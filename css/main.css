@@ -1051,6 +1051,14 @@ body > footer .copyrights {
 /* Skills */
 .skills-info {
   margin-bottom: 30px;
+  flex-direction: row;
+}
+
+.skills-info-familiar {
+  margin-bottom: 30px;
+  /* flex-direction: row; */
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .skills-info h4 {
@@ -1058,6 +1066,11 @@ body > footer .copyrights {
   line-height: 1.1em;
   position: relative;
   margin: 0 0 5px;
+}
+.skills-info-familiar h4 {
+  font-size: 0.8em;
+  line-height: 1.1em;
+  margin: 0 5px 5px;
 }
 
 .skill-container {
@@ -1098,7 +1111,7 @@ body > footer .copyrights {
 }
 /*Skill 3*/
 .skill-percentage.skill-3 {
-  width: 70%;
+  width: 60%;
 }
 /*Skill 4*/
 .skill-percentage.skill-4 {
