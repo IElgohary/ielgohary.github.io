@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="When you should/shouldn't use React Native?" />
+    <meta name="keywords" content="reactnative, javascript, android, ios, cross-platform" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="When you should/shouldn't use React Native?">
+    <meta property="og:description" content="Islam Elgohary: When you should/shouldn't use React Native?">
+    <meta property="og:image" content="images/blog/blog_post_5.png">
+    <meta property="og:url" content="https://gohary.io/blog-react-native.html">
+
+    <meta name="twitter:title" content="When you should/shouldn't use React Native?">
+    <meta name="twitter:description" content="When you should/shouldn't use React Native?">
+    <meta name="twitter:image" content="https://gohary.io/images/blog/blog_post_5.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#services" data-animation="62">Services</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li>
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#contact" data-animation="62">Contact</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_5.png" alt="blog-post-5" />
+              </div>
+
+              <div class="blog-post-content">
+                  <h1>When you should/shouldn't use React Native?</h1>
+                  <div class="entry-meta">
+                    <span class="date"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Feb 6, 2020</a></span>
+                  </div>
+                <p>I have used React Native for 2 years for various apps. I have used it both at a company and as a freelancer so I have good knowledge of its pros and cons and how the development process goes. I have recently watched this video by "the TechLead": 
+                    <br/>
+                    <iframe width="100%" height="400"
+                    src="http://www.youtube.com/embed/NxJCSI7a8wk">
+                    </iframe>
+                    
+                    <br/>
+                    I have also watched/read others refuting his argument. That's why in this article, I will try to explain both arguments as objectively as possible so you as an engineer/product owner can make an informed decision about whether or not you should use React Native.</p>
+                    
+                    <p>Before you start, the first question should be <em>Do you really need an app?</em> if you only need basic CRUD then you might be better off using Progressive Web Apps. You should always consider that option before going into the hassle of developing an app. However, If you do need an app continue reading the rest of the article.</p>
+                    
+                    <h3 id="1asinglecodebaseforbothandroidandios">1. A single code base for both Android and iOS:</h3>
+                    
+                    <p>Often when React Native developers (or cross-platform developers in general) argue about why you should use React Native, they say that you only need to write the code once and it works on both platforms. This statement is both true and false depending on what the app does. </p>
+                    
+                    <p>In React Native, you will often need to make modifications in the native code to make a feature work. For example, if you want to add push notifications, you will need to make different configurations in the native Andorid and iOS projects to make it work. That goes for many other features like using maps or camera. These configurations aren't always straight forward and they often take extra effort to make a feature work on both platforms. However, if you're making a simple app that only retrieves and shows data, then you will most probably write the code only once and it will run on both platforms with no issues. You can also use <a href="https://expo.io/">expo</a> which abstracts the native code layer and offers many features out of the box, however, if you use expo you cannot use external libraries to add more features to the app.</p>
+                    
+                    <p><strong>What that means</strong>
+                    If your app is not simple enough to be written with expo, you're probably going to spend more time configuring libraries than coding. Unless you're willing to do that don't use React Native for apps that have much functionality that rely on the devices' hardware. For simple apps however, React Native will definitely save you time and effort.</p>
+                    
+                    <h3 id="2howcomplexisthedesign">2. How complex is the Design?</h3>
+                    
+                    <p>One important thing to consider is the design. React native uses JS which means that it is single-threaded. For the design, that means that the animations will freeze the entire app if done in the JS thread. However, there are ways to implement animations in the native layer and only fire the animation from the JS thread which means that you can still do smooth animations in React Native if you learn the correct way to do that.</p>
+                    
+                    <p>Another problem regarding the design and the styling is that iOS and Android behave differently with the same style attributes. For example, shadows work on iOS by simply adding style attributes but for android, you need to install a library to add shadows to your Views. However, in most cases you implement the style only once and it works fine on both platforms.</p>
+                    
+                    <p>A third issue is that Android and iOS have different UX. Android users for example are used to going to the previous screen or cancelling an action using the back button while iOS has no back button which means you will need to handle the back button action on android and add buttons to do those same actions for iOS.</p>
+                    
+                    <p><strong>What that means</strong>
+                    Depending on the design, you might still need to write different code to apply the same style in both Android and iOS. The code is not necessarily native but you will need to handle platform-specific behaviors nevertheless.</p>
+                    
+                    <h3 id="3howmuchareyouexpectingtoscale">3. How much are you expecting to scale?</h3>
+                    
+                    <p>This is perhaps the most important question. What is your app's expected scale? according to the answer of that you will know how much you need to focus on the performance. If you're creating an app for a small audience or a prototype then it probably won't matter if you choose React Native or native iOS and Android. However, if your app is expected to have a huge number of users it means that you will need to consider performance. Let me tell you this: if you're concerned about performance then you will have to write native code eventually and probably a lot of it. React Native has many known performance issues and to fix them you have to get past the JS code and implement them natively.</p>
+                    
+                    <p><strong>What that means</strong> 
+                    You will end up maintaining 3 frameworks instead of one to improve performance. However, if you're creating a prototype or an app that is not concerned with the best possible performance then React Native would be a good option.</p>
+                    
+                    <h3 id="4dependencies">4. Dependencies</h3>
+                    
+                    <p>Something that has always caused me a headache is managing the dependencies in React Native projects. Often, I would find two or more libraries that have conflicting versions of Maven dependencies to solve that I had to check the dependency tree and then manually change the versions of the android projects in the node<em>modules to compatible versions. You also need to manage iOS dependencies as well either by using cocoa pods or manually adding the dependencies to the project. In addition to that, you have the node</em>modules to manage. This has certainly caused me to waste a lot of time but then again, that wouldn't happen for simple projects where dependencies are few and it certainly won't happen if you use Expo.</p>
+                    
+                    <h3 id="5whatisthemarketstate">5. What is the market state?</h3>
+                    
+                    <p>If you're a developer who's considering to learn React Native or a product owner who's considering which technology or what talent you need then this is a question that you have to answer.</p>
+                    
+                    <p><strong>As a developer you need to consider:</strong></p>
+                    
+                    <p>a. What the current market needs.</p>
+                    
+                    <p>b. What is the cost of learning React Native for you? Learning React Native is a lot easier if you already know Js and it's even easier if you know ReactJs.</p>
+                    
+                    <p><strong>As a product owner you need to consider:</strong></p>
+                    
+                    <p>a. Are you making a prototype or a fully functional app? React native is usually faster for prototypes and MVPs but worse at scaling. Consider that in case your app scales, You can always switch from React Native to native once you have enough fund to hire separate iOS and Android teams.</p>
+                    
+                    <p>b. What is the cost of hiring React Native Engineers vs iOS and Android Engineers? You can't really choose to use React Native if your market doesn't have React Native developers or if they cost more than iOS and Android Engineers.</p>
+                    
+                    <h3 id="conclusion">Conclusion:</h3>
+                    
+                    <p>There are no silver bullets, as a software engineer you have to make trade-offs all the time when choosing technologies. You should never dismiss a technology as "garbage" or praise a technology as if it's the Holy grail. React Native is no different, it has it's pros and cons and it's up to you to decide which trade-offs you are willing to make.</p>
+                <h2><a href="https://dev.to/ielgohary/when-you-should-shouldn-t-use-react-native-2mn0"  target="_blank">Article on dev.to</a></h2>
+                    
+
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>reactnative</a></li>
+                    <li><a>javascript</a></li>
+                    <li><a>ios</a></li>
+                    <li><a>android</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2019 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

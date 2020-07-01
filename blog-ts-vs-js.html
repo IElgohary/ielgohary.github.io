@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="What to expect if you switch from JavaScript to TypeScript" />
+    <meta name="keywords" content="js, ts, javascript, typescript, comparison, vs, switching" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="What to expect if you switch from JavaScript to TypeScript">
+    <meta property="og:description" content="Islam Elgohary: What to expect if you switch from JavaScript to TypeScript">
+    <meta property="og:image" content="images/blog/blog_post_1.jpg">
+    <meta property="og:url" content="https://gohary.io/blog-ts-vs-js.html">
+
+    <meta name="twitter:title" content="What to expect if you switch from JavaScript to TypeScript">
+    <meta name="twitter:description" content="Islam Elgohary: What to expect if you switch from JavaScript to TypeScript">
+    <meta name="twitter:image" content="https://gohary.io/images/blog/blog_post_1.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#services" data-animation="62">Services</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li>
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#contact" data-animation="62">Contact</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_1.png" alt="blog-post-1" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>What to expect if you switch from JavaScript to TypeScript</h1>
+
+                <div class="entry-meta">
+                  <span class="date"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Nov 30, 2019</a></span>
+                </div>
+                    <p>JavaScript isn't easy. You have to learn how promises work, deal with the asynchronous behavior of the language and if you are a javascript developer, chances are you've faced some unpredictable behavior during runtime.
+                        In my quest to try and write better code without changing my stack, I decided to give TypeScript a shot and here is what I have learned.</p>
+                        
+                        <h4 id="1staticallytypedlanguageshavetheirperks">1. Statically typed languages have their perks:</h4>
+                        
+                        <p>When I started writing JS I had a Java background and I was amazed at how fast it is to write code without specifying the type of everything. However, as I started writing more complex code with JavaScript, I soon realized that this development speed comes with a price, much more errors happen during runtime instead of compile time. TypeScript on the other hand gives you very descriptive error messages at compile time with suggestions to fix those errors. This reduces the number of errors that you would otherwise face during runtime.</p>
+                        
+                        <h4 id="2developmentwithstaticallytypedlanguagesisslowerthanuntypedlanguages">2. Development with statically typed languages is slower than untyped languages:</h4>
+                        
+                        <p>TS compiles to JS but since it is statically typed, it gives errors on statements that would normally run on JS. Often you need to spend more time fixing these errors than you would normally spend writing JS. For example, if you have a user object that has a username property you cannot declare it as an object type because object has no attribute username.</p>
+                        
+<pre><code >
+/* The line below would give an error 
+since type "object" has no attribute 
+username */
+let username: string = user.username;
+</code></pre>
+
+                        <p>  Instead you can either declare it as type "any" or implement an interface for the user object and use it as the variable type.</p>
+                        
+<pre><code>
+  // using interfaces
+  interface User { 
+      username: string
+  }
+  let user: User = getSomeUser();
+  let username: string = user.username;
+  // using type any
+  let user: any = getSomeUser();
+  let username: string = user.username;
+</pre></code>
+                        
+                        <h4 id="3youdontneedbabelanymore">3. You don't need babel anymore:</h4>
+                        
+                        <p>If you're like most JavaScript developers, you use new ES6 syntax like arrow functions and import statements because let's face it, they make development easier. However, those features are not yet supported by browsers and thus we need babel to make them work. Since TypeScript compiles to JavaScript, it takes care of that for you. ES6 is automatically translated to JS that the browser understands which means you don't need to use babel anymore.</p>
+                        
+                        <h4 id="4intypescriptsomelibrariesaremoreequalthanothers">4. In TypeScript, some libraries are more equal than others:</h4>
+                        
+                        <p>Typescript requires libraries to have types. this means you need to download the types package of a library in addition to the library itself to be able to use it in TypeScript (see <a href='https://github.com/DefinitelyTyped'>https://github.com/DefinitelyTyped</a> for more information) . Some libraries however don't have types implemented which means you'll either need to use JavaScript for those libraries or implement what's called a declaration file for the library yourself. For example, sequelize migrations is not ready to be used with typescript and to use it, I had to use the JavaScript version. This is possible since TS is compiled to JS and thus understands JS.</p>
+                        
+                        <h4 id="5youcanwritemorereusablecodeusingtypescriptthanjavascript">5. You can write more reusable code using TypeScript than JavaScript:</h4>
+                        
+                        <p>Typescript is object oriented which means that the code you write is much more reusable compared to that written in JavaScript. This also means that the code will often be more readable and cleaner than JS.</p>
+                        
+                        <h4 id="6itsnothardtransitioningfromjstots">6. It's not hard transitioning from JS to TS:</h4>
+                        
+                        <p>TS is made with JS developers in mind. You can progressively move to using TypeScript from JavaScript by making the configurations of TypeScript stricter as you learn more about TypeScript. In fact, you can progressively migrate old JavaScript projects to TypeScript by incrementally making the compiler more strict as you go through the tsconfig.json file.</p>
+                        
+                        <p>To sum up, both JavaScript and TypeScript are good but each has an edge. If you're going for development speed then you should probably go for JavaScript, however, expect to spend more time debugging. But if you're creating a long-term project that will be maintained for long, then you should probably start using TypeScript but be prepared to give up some development speed for code reusability and better error messages. To learn more about TypeScript I recommend reading <a href="https://github.com/basarat/typescript-book">TypeScript Deep Dive</a>.</p>
+                        
+                        <h2><a href="https://dev.to/ielgohary/what-to-expect-if-you-switch-from-javascript-to-typescript-7ff"  target="_blank">Article on dev.to</a></h2>
+                    
+
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>typescript</a></li>
+                    <li><a>javascript</a></li>
+                    <li><a>webdev</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2019 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

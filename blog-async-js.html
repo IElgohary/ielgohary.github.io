@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="How Javascript handles Async code" />
+    <meta name="keywords" content="node, webdev, javascript, async, asynchronus, await, event loop, eventloop" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="How Javascript handles Async code">
+    <meta property="og:description" content="Islam Elgohary: How Javascript handles Async code">
+    <meta property="og:image" content="images/blog/blog_post_6.png">
+    <meta property="og:url" content="https://gohary.io/blog-async-js.html">
+
+    <meta name="twitter:title" content="How Javascript handles Async code">
+    <meta name="twitter:description" content="How Javascript handles Async code">
+    <meta name="twitter:image" content="https://gohary.io/images/blog/blog_post_6.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#services" data-animation="62">Services</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li>
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#contact" data-animation="62">Contact</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_6.png" alt="blog-post-6" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>How Javascript handles Async code</h1>
+                <div class="entry-meta">
+                  <span class="date"><a href="#"><i class="fa fa-fw fa-clock-o"></i> May 8, 2020</a></span>
+                </div>
+                <p>When I first started learning Javascript, the concept of async code was very hard to grasp for some reason and I had to read a lot and watch a lot of videos explaining how async code works on Javascript. What made things harder, was that Javascript is single-threaded so I couldn't understand how a single threaded language had the ability to run async code. In this article, I will share my knowledge about async code and how Javascript handles it.</p>
+
+<p>Async programming has been around since early stages of computing And it has been heavily used in the past few years and it's currently in almost all websites and applications as it's now considered the default programming paradigm to obtain high performance and low latency. Before explaining how Javascript handles async programming, let me briefly explain why async programming is important and what exactly it is.</p>
+
+<h3 id="whatisasyncprogramming">What is async programming?</h3>
+
+<p>Async programming refers to code that does not stop the main process of the program (non blocking code). Some parts of the code do not need to stop the main website/application process to execute. For example, Imagine a blog where users can do CRUD operations on blog posts where the blog posts are saved in MYSQL database. Imagine that the blog doesn't use async programming. Here is a possible scenario:</p>
+
+<p>1- User <em>A</em> is creating a post<br/>
+2- Now the program is busy writing the post to the database<br/>
+3- At the same time, user <em>B</em> wants to read another post<br/>
+4- Since the program is currently writing to the database, user <em>B</em> will have to wait for user <em>A</em>'s new post to be written in the database before being able to read another blog post.</p>
+
+<p>Now let's see the same scenario if the database operations are async:</p>
+
+<p>1- User <em>A</em> is creating a post<br/>
+2- The database write operation does not stop the main thread but instead, it's scheduled to run some other time in the future and the program can continue running normally.<br/>
+3- At the same time, user <em>B</em> sends a request to read a different post.<br/>
+4- Since the program is not busy, it can handle user <em>B</em>'s request immediately.</p><br/>
+
+<p>Note that async is not the same as concurrent or multi-threading. As we will see Javascript runs async code but it is single-threaded.</p>
+
+<h3 id="howasynccodeismodeledinjavascript">How async code is modeled in Javascript?</h3>
+
+<p>Javascript uses Promises, promises are given that name because they promise to finish execution at some point in the future, however, they do not guarantee when they will finish running. In Javascript, async code is mostly I/O and network requests but most async libraries have corresponding sync APIs and normal code can also be written as promises or you can convert other async libraries APIs to be Promises with libraries like bluebird. </p>
+
+<p>A promise is usually given 2 functions, one called in case of success of the promise and another called if the promise fails. Those functions are called callbacks, however, callbacks have problems like scope changes that made it hard to use (check <a href="http://callbackhell.com/" target="_blank">Callback Hell</a> for more). That's why <em>Async/Await</em> syntax was eventually introduced. You can learn more about promises <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank">Here</a>.</p>
+
+<p>An example of async code is the famous <code>setTimeout</code> function that takes one callback function and run it after a specified period of time.</p>
+
+<h3 id="howdoesjavascripthandlesasynccode">How does Javascript handles async code?</h3>
+
+<p>As mentioned above, Javascript is single-thread. This means that the program cannot run the async code on multiple threads which means that it cannot run multiple processes at the same time. If that's the case then how does Javascript handle async code with a single thread?</p>
+
+<p>The thing is that the async API used in Javascript doesn't run in the Javascript runtime but they are actually APIs exposed by the system running the Javascript program (web APIs for frontend developers or C++ for backend developers). So the async code is actually deferred to the system running the Javascript runtime. But How does the runtime know that the async code finished running? Here comes the <em>Event Loop</em> and the <em>Callback Queue</em>.</p>
+
+<p>When an async function is done execution, the callback function is pushed to the Callback Queue. Once the Javascript runtime stack is empty, the Event Loop gets the function from the Callback Queue and adds it to the runtime stack and thus the function is executed by the Javascript runtime.</p>
+
+<p>This is how Javascript has async code while being single-threaded. I hope this post was useful and I recommend watching <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank">this video</a> for live examples as this helped me a lot when I first started. You can also read <a href="https://www.tutorialspoint.com/nodejs/nodejs_event_loop.htm" target="_blank">This</a> and <a href="https://medium.com/javascript-in-plain-english/javascript-event-loop-y-promises-951ba6845899" target="_blank">This</a> to learn more about the Event Loop.</p>
+                <h2><a href="https://dev.to/ielgohary/how-javascript-handles-async-code-756"  target="_blank">Article on dev.to</a></h2>
+                    
+
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>node</a></li>
+                    <li><a>webdev</a></li>
+                    <li><a>javascript</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2019 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
