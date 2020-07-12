@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="How Heroku's 12-factor app stands against modern industry trends" />
+    <meta name="keywords" content="microservice, microservices, scalability, maintainability, docker, kubernetes, software, architecture, design, twelve, factor, devops" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="How Heroku's 12-factor app stands against modern industry trends">
+    <meta property="og:description" content="Islam Elgohary: How Heroku's 12-factor app stand against modern industry trends">
+    <meta property="og:image" content="images/blog/blog_post_7.png">
+    <meta property="og:url" content="https://gohary.io/blog-12-factor-app.html">
+
+    <meta name="twitter:title" content="How Heroku's 12-factor app stand against modern industry trends">
+    <meta name="twitter:description" content="Islam Elgohary: How Heroku's 12-factor app stand against modern industry trends">
+    <meta name="twitter:image" content="https://gohary.io/images/blog/blog_post_7.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#services" data-animation="62">Services</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li>
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#contact" data-animation="62">Contact</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_7.png" alt="blog-post-7" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>How Heroku's 12-factor app stands against modern industry trends</h1>
+
+                <div class="entry-meta">
+                  <span class="date"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Jul 11, 2020</a></span>
+                </div>
+                <p>The 12-factor app is a methodology developed by Heroku and was first presented in 2011 by Adam Wiggins. It consists of 12 rules or guidelines that dictate how an app should be built and deployed to improve 2 aspects:</p>
+
+                <p>1- App Scalability </br>
+                2- App Maintainability</p>
+
+                <p>Originally, the methodology was created as a must follow for apps to be deployed using Heroku. However, it has been adopted by many other companies either by applying it to their own products or creating new tools that make it easier to apply the methodology on other products. If we watch the current technology trends and commonly used methods in building and deploying apps, we can easily see how they align with those of the 12-factor app. In this article, I will list the 12-factor app rules and how they align with modern trends.</p>
+
+                <h3 id="icodebase">I. Code Base:</h3>
+
+                <p><em>One code base tracked in revision control, many deploys.</em></p>
+
+                <p>What this means is that you should not use a mono repo that has multiple apps, but rather have a separate repo for each app. It also dictates that each app can have multiple deployments (ex: staging, production,...) but they must be from the same code base even if they have different commits. </p>
+
+                <p>I'm half-hearted about this rule as it has 2 directions:</p>
+
+                <ol>
+                <li>Each repo should have only one app.</li>
+
+                <li>Each app should have only one repo even if it has multiple deployments.</li>
+                </ol>
+
+                <p>As for the first part, I don't think it's strictly better than having a mono repo and currently, many companies have mono repos including Heroku itself according to Heroku's Software Architect Joe Kutner on Episode 409 of the "Software Engineering Radio" Podcast (The episode explains a lot about 12-factor app).</p>
+
+                <p>However, I think it's currently a given to apply the 2nd part. It's actually the intuitive action to deploy an app from only one repo even if you have multiple deployments of the app from different commits. Otherwise, there will be a lot of inconsistencies </p>
+
+                <h3 id="iidependencies">II. Dependencies:</h3>
+
+                <p><em>Explicitly declare and isolate dependencies</em> </p>
+
+                <p>An app should never rely on the existence of system-wide tools or packages, but it should be explicitly stating and using it's own dependencies regardless of the packages that exist on the system.</p>
+
+                <p>This can be divided into:</p>
+
+                <ol>
+                <li>Dependency Declaration</li>
+
+                <li>Dependency Isolation</li>
+                </ol>
+
+                <p>The first part is about having the app declaring exactly the dependencies and tools that it uses. An example to declaring packages is <strong>npm</strong> which declares dependencies in <code>package.json</code> as for declaring tools like curl this is satisfied by using Docker by downloading all the tools you need in the image before deploying.</p>
+
+                <p>The second part is about isolating the app dependencies from system-wide packages so the app uses only the its dependencies and doesn't accidentially use a system dependency. Again, Docker satisfies this condition since it separates the app's environment completely from the machine's environment.</p>
+
+                <h3 id="iiiconfig">III. Config:</h3>
+
+                <p><em>Store config in the environment</em></p>
+
+                <p>Config include database URLs, third-party services credentials and per deployment values. These values are mostly different according to each environment </p>
+
+                <p>Config should be decoupled from the app itself so changing the database for example would not require changing anything in the code rather it would be a change in the environment itself.</p>
+
+                <p>To know if your app satisfies this condition, ask yourself, can you make the app opensource without changing the code?</p>
+
+                <p>This is definitely best practice and often github would warn you if you have credentials in your repo. However, it's not uncommon to make the mistake of having config in the app itself but this rule definitely still applies to modern apps for security and scalability reasons.</p>
+
+                <h3 id="ivbackingservices">IV. Backing services:</h3>
+
+                <p><em>Treat backing services as attached resources</em></p>
+
+                <p>Backing services are any services the app needs to run normally like databases, caches and messaging services. What this rule states is that these services should be treated as attachables and should be easily changed without changing the code. This is like a followup to the previous rule because having the backing services configs in the environment will satisfy this rule automatically.</p>
+
+                <h3 id="vbuildreleaserun">V. Build, release, run:</h3>
+
+                <p><em>Strictly separate build and run stages</em></p>
+
+                <p>Each deployment should have 3 stages:</p>
+
+                <ol>
+                <li>Build: Generate an executable from the code</li>
+
+                <li>Release: The build is combined with the configs</li>
+
+                <li>Run: The app (build + config) is run in execution environment</li>
+                </ol>
+
+                <p>This rule dictates that the 3 stages should always be separated and should go only in one direction. So changing the code in runtime is not possible and any change has to be done before the build stage.</p>
+
+                <p>The code of a release shouldn't be changed either and each release has a unique ID so any change must create a new release with a new ID.</p>
+
+                <p>Finally, the run stage deploys the release. </p>
+
+                <p>Considering most CI/CD tools, they abide by this rule. When a new commit is merged, the CI/CD tool creates a new build from that commit and gives it an ID. Afterwards, that build can be used to create a new release for the specific deployment environment. For example, you can select to deploy build <code>v1.0.0</code> to testing and according to your pipeline, this might create a Docker image that has the build and the config of the testing environment. Later, this build is run on your server through Kubernetes for example.</p>
+
+                <p>I would say this is a very important rule specially now that CI &amp; CD are part of most projects and separating the pipeline stages is crucial to be able to easily revert to a specific build/release when needed.</p>
+
+                <h3 id="viprocesses">VI.Processes</h3>
+
+                <p><em>Execute the app as one or more stateless processes</em></p>
+
+                <p>This is a very important rule and in my opinion, this is the foundation of current deployment methodologies. </p>
+
+                <p>This rule states that an app should have zero or more processes (instances) and they should be stateless. </p>
+
+                <p>Having multiple instances means that the app can handle more requests and scale horizontally instead of vertically which is something that most modern products do. In addition, having the processes stateless, means that they can easily be disposed of and replaced by new instances (as stated in rule IX). A stateless instance doesn't expect any thing to stay in memory or disk but rather uses stateful backing services like databases. Those instances should also never use sticky sessions so a user can have their requests handled by multiple instances and should keep going normally in case an instance is destroyed for any reason.</p>
+
+                <p>Obviously, this is how Kubernetes works, Kubernetes allows you to choose the number of instances of the app to run and it manages stopping, restarting and replacing the instances automatically expecting them to be stateless. </p>
+
+                <h3 id="viiportbinding">VII. Port Binding:</h3>
+
+                <p><em>Export services via port binding</em></p>
+
+                <p>This rule states that the webserver should be part of the app.</p>
+
+                <p>As a young developer, this rule is very confusing to me and I didn't get it at first. After some research, I learned that previously, the app didn't have to be itself the web server. Rather the app could be deployed somewhere and its web server somewhere else where the web server is responsible for routing to the app. I don't really think this is relevant today since the standard now is implementing the web server into the app itself. However, maybe that was influenced by this rule and that's actually why this technology is no longer used.</p>
+
+                <h3 id="viiiconcurrency">VIII. Concurrency:</h3>
+
+                <p><em>Scale out via the process model</em></p>
+
+                <p>Another very important rule relating to the use of microservices. </p>
+
+                <p>This rule states that a program should be divided into multiple processes where each process has it's own functionallity. The 12-factor website explicitly states that this is different from in-app concurrency like running multiple threads inside the app. But the concurrency model should follow the "unix process model for running service daemons" where the processes are explicitly created and visible to the developer as processes are first class citizens in the sense that each process should be managed, controlled and configured by the developer (or at least the developer is aware of them) and not internally by the app.</p>
+
+                <p>Obviously, this is the fundamental concept of microservices architecture which has not been formally given the name "microservice" until later in 2012.</p>
+
+                <h3 id="ixdisposability">IX. Disposability:</h3>
+
+                <p><em>Maximize robustness with fast startup and graceful shutdown</em></p>
+
+                <p>Another crucial rule that aligns with modern deployment methods.</p>
+
+                <p>This rule state that:</p>
+
+                <ol>
+                <li>Processes should be disposable. (which we established in rule VI)</li>
+
+                <li>A process should always be ready to gracefully shutdown without breaking the app.</li>
+                </ol>
+
+                <p>This means that each process should be ready for any unexpected shutdown whether its a SIGTERM or a hardware failure. For example, if a process receives a SIGTERM it should have a mechanism to delegate it's current job to another process like putting it back to the queue so when another process is instantiated to replace it, the job can be finished.</p>
+
+                <p>Again, Kubernetes runs expecting processes to do that and this is why processes can be restarted/replaced at any time and why changing the release version of an app is now as easy as running one command (or even use a GUI) to select the release you want and Kubernetes can handle the rest.</p>
+
+                <h3 id="xdevprodparity">X. Dev/Prod Parity:</h3>
+
+                <p><em>Keep development, staging, and production as similar as possible</em></p>
+
+                <p>This one is self explainatory. You should always strive to have the development, staging and production environment as similar as possible. This is mainly to make the app ready for CD and to achieve that, you need to minimize 3 gaps between the environments:</p>
+
+                <ol>
+                <li>Time Gap: The time between development and deployment to production. This is fixed by minimizing the time between development and deployment.</li>
+
+                <li>Personnel Gap: Development and Deployment are handled by 2 different persons (Developer and DevOPs). This is fixed by involving the developer in the deployment process.</li>
+
+                <li>Tools Gap: Developer might use lightweight tools like (SQLite) while production uses more sophisticated tools like (MySQL). This is fixed by...well, using the same tools for development as in production.</li>
+                </ol>
+
+                <p>This has become a lot easier now with CD tools that allow developers to handle deployment as soon as their changes are done. Using the same tools in all environments is easier now with packaging systems like homebrew and of course with docker where you can use any service you want without going through setting it up.</p>
+
+                <h3 id="xilogs">XI. Logs:</h3>
+
+                <p><em>Treat logs as event streams</em></p>
+
+                <p>This rule prohibits writing or managing log files, rather it encourages treating logs as events in the sense that they are actually time-ordered events. So the app should just output these events as a stream through stdout and they should be handled outside the app.</p>
+
+                <p>Of course this is very relevant today given that processes are disposable and distributed which makes sence to aggreagate logs from different processes in one place.</p>
+
+                <p>Services that provide that include Logstash and loggly.</p>
+
+                <h3 id="xiiadminprocesses">XII. Admin Processes:</h3>
+
+                <p><em>Run admin/management tasks as one-off processes</em></p>
+
+                <p>An example to these tasks are DB migrations. The rule states that these tasks must:</p>
+
+                <ol>
+                <li>Run in the same release environment as the deployment</li>
+
+                <li>Be part of the app code even if they are a one-time script</li>
+                </ol>
+
+                <p>This focuses on the consistency of the app where you shouldn't just ssh to the server and run commands there. Rather, you should create scripts that are shipped with the code to make those changes.</p>
+
+                <p>If you have ever used an ORM to manage migrations, then you will notice that it follows this rule as the migration scripts are stored in the project and can be run in multiple environments with the same consistency.</p>
+
+                <h3 id="conclusion">Conclusion:</h3>
+
+                <p>The 12-factor App, despite being almost a decade old, is mostly relevant and it has obviously changed the way of implementing and deploying apps and possibly influenced the tools that might be considered as the standard in the current software industry.</p>
+
+                <h3 id="someresources">Some Resources:</h3>
+
+                <p><a href="https://12factor.net/">Official 12-factor app website</a></br>
+                <a href="https://www.se-radio.net/2020/05/episode-409-joe-kutner-on-the-twelve-factor-app/">SE-Radio Episode 409</a></br>
+                <a href="https://aws.amazon.com/blogs/compute/applying-the-twelve-factor-app-methodology-to-serverless-applications/">AWS Blog: Applying the Twelve-Factor App Methodology to Serverless Applications</a></p>
+                    
+
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>devops</a></li>
+                    <li><a>microservices</a></li>
+                    <li><a>scalability</a></li>
+                    <li><a>maintainability</a></li>
+                    <li><a>architecture</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2019 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
