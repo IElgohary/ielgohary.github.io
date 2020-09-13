@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="The circuit breaker pattern" />
+    <meta name="keywords" content="The circuit breaker pattern" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="The circuit breaker pattern">
+    <meta property="og:description" content="The circuit breaker pattern">
+    <meta property="og:image" content="images/blog/blog_post_8.jpg">
+    <meta property="og:url" content="https://gohary.io/blog-async-js.html">
+
+    <meta name="twitter:title" content="The circuit breaker pattern">
+    <meta name="twitter:description" content="The circuit breaker pattern">
+    <meta name="twitter:image" content="https://gohary.io/images/blog/blog_post_8.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li>
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_8.jpg" alt="blog-post-8" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>The circuit breaker pattern</h1>
+                <div class="entry-meta">
+                  <span class="date"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Sep 13, 2020</a></span>
+                </div>
+                <p>In a system that applies microservices architecture, microservices often need to collaborate to get the job done. But How does the system act if a microservice is down? What would happen if a service is unavailable or not responsive enough to handle requests? How can this be handled gracefully with minimal effect on the user experience? In this article, I will explain the circuit breaker pattern which provides a solution to this problem.</p>
+                <p>First of all we must accept that, if a service is unavailble or unresponsive there is nothing we can do until the service is up again and the cause of the problem is solved. Which means that our only options are to fail fast and be fault tolerant. To understand why the circuit breaker is important, let&#39;s see how the error might be handled without a circuit breaker.</p>
+                <p>Assume that a user sends a request to buy some stock and somewhere on the path of that transaction the transactions microservice needs information from the users microservice but the users microservice is down or the network is slow. Assume that the timeout value is 10 seconds then the user will only know about the error after 10 seconds and each user trying to make a transaction will also have to wait for 10 seconds before each error. That will also happen for each retry by the user and obviously, this is not acceptable specially in a realtime system where time is critical and users expect things to happen instantaniously.</p>
+                <p>That&#39;s where a circuit breaker comes in.</p>
+                <h3 id="what-is-a-circuit-breaker-">What is a circuit breaker?</h3>
+                <p>The circuit breaker is a proxy that a microservice receives requests through. It checks two things regarding that microservice:</p>
+                <p>1- availability: Is the microservice online? </br>
+                2- responsiveness: Can the microservice handle requests?</p>
+                <p>by monitoring these states, the circuit breaker may or may not allow requests to reach the microservice. Which allows the system to fail fast and hence be more fault tolerant.</p>
+                <h3 id="how-a-circuit-breaker-works-">How a circuit breaker works:</h3>
+                <p>Initially, the circuit breaker is closed (it allows requests) and it keeps monitoring the microservice at all times until the microservice is either unavailable or unresponsive. In that case, the circuit breaker opens and it automatically rejects all subsequent requests without sending them to the microservice or waiting for the timeout period. Eventually when the microservice is available and responsive again, the circuit closes and allows requests to reach the microservice normally. The most important part of that process is the monitoring.</p>
+                <h3 id="how-does-the-circuit-breaker-monitor-a-microservice-">How does the circuit breaker monitor a microservice?</h3>
+                <p>One way to monitor the microservice can be an endpoint that simply replys with OK.The circuit breaker can keep pinging the endpoint, If it replies then the service is up, if it doesn&#39;t then it&#39;s down. However, this approach would be limited since it only checks for availability but not responsiveness. In order to work, a service might need to use a database and if the database is unavailable then the service is not responsive and should not receive requests even though it is online.</p>
+                <p>To solve that, another approach is a synthetic transaction. This is done by actually calling a real endpoint in the service with fake data and depending on whether the request is processed or not the circuit closes or opens. But this means that all services in all environments should be aware that this is a fake request and should not be handled by the system.</p>
+                <p>That&#39;s why another approach is more commonly used which uses real-user monitoring.</p>
+                <h3 id="real-user-monitoring-">Real-user monitoring:</h3>
+                <p>This approach monitors the requests done by the users in realtime, monitors the response time of those requests and analyizes the trends in them. If the response time keeps increasing above the mean time then the service is assumed to be overloaded and the circuit opens. The circuit breaker then moves to a half-open state in which it only allows a small number of requests and monitors them. When the response time is back to normal, the circuit is then closed again and all requests are handled normally.</p>
+                <p>This can also be threshold-based where a threshold is set for failed requests and the circuit breaker waits for requests to actually fail a number of times that is equal to that threshold before going to the half-open state.</p>
+                <p>In both cases, this approach will need to use cache or storage in order to keep track of the requests and the overhead of this approach depends on the effeciency of the storage used.</p>
+                <h3 id="applying-circuit-breaker-pattern-">Applying circuit breaker pattern:</h3>
+                <p>Now that we know what a circuit breaker is, We have two options to implement it:</p>
+                <p>1- Actually implement it from scratch.
+                2- Using one that&#39;s provided by a service that you already use.</p>
+                <p>As for the first one, it&#39;s relatively easy to implement and there are many examples online so I will not get into that and I will focus on the second option.</p>
+                <p>If you&#39;re using an API Gateway, chances are it already has a circuit breaker that you can configure. For example: Tyk and KrakenD both have their own implementations of a circuit breaker that you can simply use. There are also other opensource services that have a circuit breaker ready for configuration like Elasticsearch. Many orchestration and integration frameworks like Apache Camel also provide circuit breakers.</p>
+                <h3 id="conclusion-">Conclusion:</h3>
+                <p>Failing fast is important for most systems and is crucial for realtime systems. But eventhough the circuit breaker is useful, it does affect the performance since it adds a new layer that a request needs to go through. However, in software engineering there are no silver bullets. Using microservices introduces new problems and those problems are solved by approaches like the circuit breaker that in turn affects the performance. Things can also get more complex in distributed systems. </p>
+                <p>In short, there are always tradeoffs and it&#39;s a matter of what suits your usecase and what you can afford to sacrify in order to improve other aspects in your system.</p>
+                
+
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>microservices</a></li>
+                    <li><a>webdev</a></li>
+                    <li><a>architecture</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2020 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
