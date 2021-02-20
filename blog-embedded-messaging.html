@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="On messaging and embedded messaging" />
+    <meta name="keywords" content="microservice, scalability, maintainability, system, design, system design" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="On messaging and embedded messaging">
+    <meta property="og:description" content="Islam Elgohary: On messaging and embedded messaging">
+    <meta property="og:image" content="images/blog/blog_post_9.png">
+    <meta property="og:url" content="https://ielgohary.github.io/blog-embedded-messaging.html">
+
+    <meta name="twitter:title" content="On messaging and embedded messaging">
+    <meta name="twitter:description" content="Islam Elgohary: On messaging and embedded messaging">
+    <meta name="twitter:image" content="https://ielgohary.github.io/images/blog/blog_post_9.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li>
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_9.png" alt="blog-post-9" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>On messaging and embedded messaging</h1>
+
+                <div class="entry-meta">
+                  <span class="date"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Feb 20, 2021</a></span>
+                </div>
+                    <p>Nowadays almost every large software is built using microservices architecture. As I always say, this introduces a whole bunch of problems within the software. One of these problems is communication between services.</p>
+
+                <p>The problems that you would probably face in this aspect are:</p>
+
+                <ol>
+                <li>Synchronization: synchronizing all the services so the system would eventually be in a consistent state</li>
+
+                <li>Homogeneity: More often than not, services will be using different protocols or different technologies</li>
+                </ol>
+
+                <p>In order to solve these problems you can use REST or RPC, however, both protocols are synchronous which means that a service is bound to block on the other service to finish handling the request before it's able to free resources for new requests. This is where messaging comes in play. In this article I will explain briefly messaging brokers and transition to embedded messaging, however, I will not get into much details about messaging protocols or patterns.</p>
+
+                <p>Messaging is an asynchronous way of communicating events or tasks between different services. To illustrate how messaging works, let's take a simple example.</p>
+
+                <p>assume that you're working on a system for a bank. the system has 2 services: </p>
+
+                <ol>
+                <li>Transactions service that logs the transactions</li>
+
+                <li>Account service that handles the customers accounts</li>
+                </ol>
+
+                <p>assume that a customer makes a deposit. In that case, we need to add the deposited amount to the customer's account in the account service and log the transaction in the transactions service.</p>
+
+                <p>Using a messaging broker to do that would look like this: <br />
+                <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/feiwodtcn58woembt1k3.png" alt="Alt Text" /></p>
+
+                <p>so the request goes to the account service first which updates the customer's account with the new deposited amount. Then the account service would create an event with the deposit action and send it to the messaging broker. Then the transaction service would receive that message and log the transaction.</p>
+
+                <p>The account service's role in the process ends as soon as it sends the message to the broker which means that it no longer blocks on the transactions service.</p>
+
+                <p>However, we can take this one step further by using embedded messaging.</p>
+
+                <p>Embedded messaging uses a messaging broker that is inside the service itself. So instead of connecting to the broker externally the transactions service would have the broker embedded in it. 
+                <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jjb39txkjhsn3i14fow6.png" alt="Alt Text" /></p>
+
+                <p>As you can see, there is no longer a connection between the transactions service and the broker, which means that we don't need to worry about them being disconnected. This also adds the possibility of different classes within the service to communicate using the broker and it allows for parallelizing some functionality by having different classes listening to the same event or message.</p>
+
+                <p>For example, assume that the transactions service logs the transaction in 2 different databases and sends a notification to a different service. Since we don't need to worry about losing connection to the broker; we can have 3 different classes within the transactions service listen to the same message so the 3 functionalities would start at the same time as soon as the message is received.
+                <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/my4bjactnhwewymii54z.png" alt="Alt Text" /></p>
+
+                <p>We can even take a step further and use embedded messaging for other functionalities replacing other protocols altogether. For example, if the transactions service needs to contact the users service to get the user's name, we can have a design that looks like this:
+                <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/so15xfdcznqiknsggxhl.png" alt="Alt Text" /></p>
+
+                <p>first the transactions service receives the message as the previous example
+                <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/c0cf5zls9vyfd4f43o4v.png" alt="Alt Text" /></p>
+
+                <p>The transactions service then sends a new message to the broker inside the users service requesting the user's name. The message would have a unique identifier along with the payload to relate the response to the current task. Notice that the transactions service would connect to the users service's broker, send the message, then disconnect. We no longer need connections to an external intermediate service.
+                <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r0ov3zmnkc3fi98eudly.png" alt="Alt Text" /></p>
+
+                <p>The users service can then send the name to the response queue in the transactions service's broker along with the unique identifier that was initially sent in the previous step (again connect, send, disconnect). Then the transactions service can carry on logging the transaction with the user's name.</p>
+
+                <p>Since we no longer have an intermediate service, we eliminated a single point of failure and we alleviated bottle necks associated with that intermediate service.</p>
+
+                <h3 id="resources">Resources:</h3>
+
+                <ol>
+                <li><a href="https://hornetq.jboss.org/">HornetQ</a></li>
+
+                <li><a href="https://developertoarchitect.com/lessons/lesson36.html">Developer to Architect: embedded messaging</a></li>
+                </ol>
+
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>microservices</a></li>
+                    <li><a>design</a></li>
+                    <li><a>systems</a></li>
+                    <li><a>architecture</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2021 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
