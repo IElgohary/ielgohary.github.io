@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Design Patterns: Strategy Pattern" />
+    <meta name="keywords" content="Design Patterns: Strategy Pattern" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="Design Patterns: Strategy Pattern">
+    <meta property="og:description" content="Design Patterns: Strategy Pattern">
+    <meta property="og:image" content="images/blog/blog_post_12.jpeg">
+    <meta property="og:url" content="https://ielgohary.github.io/blog-strategy-pattern.html">
+
+    <meta name="twitter:title" content="Design Patterns: Strategy Pattern">
+    <meta name="twitter:description" content="Design Patterns: Strategy Pattern">
+    <meta name="twitter:image" content="https://ielgohary.github.io/images/blog/blog_post_12.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <!-- <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li> -->
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_12.jpeg" alt="blog-post-12" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>Design Patterns: Strategy Pattern</h1>
+                <p>In a previous blog post <a href="https://ielgohary.github.io/blog-design-patterns.html">Intro to Design Patterns</a> I used strategy pattern as an example for behavioral patterns. In this post, I will give a deeper explanation to strategy pattern and give examples to it.</p>
+<p>You know how you can go to the grocery store through many different routes? Or how you can play music on both your phone and your laptop despite them being different devices? This is where strategy pattern shines.</p>
+<p>Strategy pattern is a <strong>behavioral</strong> design pattern that is very helpful for when you have similar but different objects where each object has a different way to do the same task or when something can be achieved in more than one way and you need to accommodate for all these ways in your application. Let&#39;s explain with an example.</p>
+<h1 id="problem">Problem</h1>
+<p>Let&#39;s assume that you have an application that calculates the area of a square. You can have a class for the square that looks like this:</p>
+<pre><code class="lang-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span> </span>{
+  side double;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.side * <span class="hljs-keyword">this</span>.side;
+  }
+}
+</code></pre>
+<p>and your main function would be:</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  squareInstance = <span class="hljs-keyword">new</span> Square();
+  squareInstance.side = <span class="hljs-number">5</span>;
+  <span class="hljs-keyword">print</span>(squareInstance.area);
+}
+</code></pre>
+<p>Now a new requirement comes up where you also need to handle triangles. One way to do that is to add a &quot;type&quot; field to the class and calculate the area according to the type which would look like this:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span> {
+  type <span class="hljs-keyword">string</span>;
+  side <span class="hljs-keyword">double</span>;
+  <span class="hljs-keyword">base</span> <span class="hljs-keyword">double</span>;
+  height <span class="hljs-keyword">double</span>;
+
+  <span class="hljs-function">function <span class="hljs-title">area</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">switch</span> <span class="hljs-keyword">this</span>.<span class="hljs-keyword">string</span> {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"triangle"</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0.5</span> * <span class="hljs-keyword">this</span>.<span class="hljs-keyword">base</span> * <span class="hljs-keyword">this</span>.height;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"square"</span> : <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.side * <span class="hljs-keyword">this</span>.side;
+    }
+  }
+}
+</code></pre>
+<p>this would work but what if we add a circle to the class? as you can probably notice, this is a confusing solution and it will get more confusing as we add more types. This solution would introduce a lot of problems like:</p>
+<ol>
+<li>We needed to add variables that are specific to a single shape and are irrelevant to other shapes. The triangle has a base and a height while the square has a side.</li>
+<li>Initializing an instance of the class is error prone. A client can simply create a shape of type &quot;triangle&quot; and give it base and side instead of a height.</li>
+<li>Handling object behavior requires switch statements or if statements. This will cause problems as the project gets larger because whenever you add a new type, you will find yourself adding a new if/case statement to every function that handles the object and before you know it, you will have a massive piece of code that is basically conditional statements.</li>
+</ol>
+<h1 id="solution">Solution</h1>
+<p>The strategy pattern aims to allow for similar objects to have different behaviors without having to know the context. It also keeps the code clean and organized and allows for adding new behaviors seamlessly. Here is how it works:</p>
+<ol>
+<li>Move the function that has different behaviors to an interface.</li>
+<li>Split the different &quot;types&quot; to different classes.</li>
+<li>each of the new classes should implement the interface.</li>
+</ol>
+<p>The code will look like this:</p>
+<pre><code class="lang-javascript"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">AreaStrategy</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span><span class="hljs-params">()</span></span>{};
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AreaStrategy</span> </span>{
+  side double;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.side * <span class="hljs-keyword">this</span>.side;
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Triangle</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AreaStrategy</span> </span>{
+  base double;
+  height double;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0.5</span> * <span class="hljs-keyword">this</span>.base * <span class="hljs-keyword">this</span>.height;
+  }
+}
+</code></pre>
+<p>Now calculating the area can be done without having the context. You can have a function that takes a shape and calculate the area directly without the function having to know what the shape is. Since all classes implement AreaStrategy, shape can simply be of type AreaStrategy. The function would look like this:</p>
+<pre><code class="lang-javascript"> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateArea</span><span class="hljs-params">(shape AreaStrategy)</span></span>{
+  <span class="hljs-keyword">return</span> shape.area()
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  squareInstance = <span class="hljs-keyword">new</span> Square();
+  squareInstance.side = <span class="hljs-number">5</span>;
+  <span class="hljs-keyword">print</span>(calculateArea(squareInstance))
+  <span class="hljs-comment">// prints "25" i.e. 5 * 5</span>
+
+  triangleInstance = <span class="hljs-keyword">new</span> Triangle();
+  triangleInstance.base = <span class="hljs-number">10</span>;
+  triangleInstance.height = <span class="hljs-number">20</span>;
+  <span class="hljs-keyword">print</span>(calculateArea(triangleInstance))
+  <span class="hljs-comment">// prints "100" i.e. 0.5 * 10 * 20</span>
+}
+</code></pre>
+<p>By using abstraction, a function needs to only have the object to work properly without having to know the object&#39;s type. It doesn&#39;t even have to know that there are types. As long as the object implements the interface it will work without adding anything to the function.</p>
+<p>Now if we have a new shape, all we need to do is to create a new class and make it implement the AreaStrategy interface and it will work without having to make modifications to other parts of the code.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>By using abstraction, strategy pattern makes it a lot easier and cleaner to have different behaviors/algorithms for the same task. Simply implement an interface and you&#39;re good to go. No context needed. It simply allows you to focus on the task rather than the method it&#39;s done.</p>
+
+Photo by <a href="https://unsplash.com/@alvarordesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alvaro Reyes</a> on <a href="https://unsplash.com/s/photos/business-strategy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>software design</a></li>
+                    <li><a>architecture</a></li>
+                    <li><a>OOP</a></li>
+                    <li><a>design patterns</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2021 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
