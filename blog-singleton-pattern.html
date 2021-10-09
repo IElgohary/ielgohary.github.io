@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Design Patterns: Singleton Pattern" />
+    <meta name="keywords" content="Design Patterns: Singleton Pattern" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="Design Patterns: Singleton Pattern">
+    <meta property="og:description" content="Design Patterns: Singleton Pattern">
+    <meta property="og:image" content="images/blog/blog_post_12.jpeg">
+    <meta property="og:url" content="https://ielgohary.github.io/blog-singleton-pattern.html">
+
+    <meta name="twitter:title" content="Design Patterns: Singleton Pattern">
+    <meta name="twitter:description" content="Design Patterns: Singleton Pattern">
+    <meta name="twitter:image" content="https://ielgohary.github.io/images/blog/blog_post_13.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <!-- <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li> -->
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_13.jpeg" alt="blog-post-13" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>Design Patterns: Singleton Pattern</h1>
+                <p>Continuing my <a href="https://ielgohary.github.io/blog-design-patterns.html">Intro to Design Patterns</a> series; today I will explain the singleton design pattern.</p>
+<p>You know how you can have one global variable in your application? Singleton pattern is the same but for classes.</p>
+<p>The Singleton design pattern is a <strong>creational</strong> pattern and it&#39;s a very simple one actually. Basically, if you need only one instance of a class in your application then that&#39;s when you use a singleton pattern. The singleton pattern is a class that can have only one instance in the application.</p>
+<h3 id="problem">Problem</h3>
+<p>I will use a simple example here of a counter. Let&#39;s assume that you have a chat room and you want to keep count of how many people are currently online without using a database. For the sake of simplicity let&#39;s assume that we don&#39;t need that information to be persistent so we are ok with the counters resetting when the application restarts. In this case we can just use a class with a variable that keeps track of users count. the class can look like this:</p>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserCount</span> </span>{
+  private counter int;
+
+  <span class="hljs-keyword">constructor</span> UserCount(){
+    <span class="hljs-keyword">this</span>.counter = <span class="hljs-number">0</span>;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Increment</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.counter++;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Decrement</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.counter--;
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Auth</span> </span>{
+  counterInstance UserCount;
+
+  <span class="hljs-keyword">constructor</span> Auth() {
+    <span class="hljs-keyword">this</span>.counterInstance = <span class="hljs-keyword">new</span> UserCount();
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Login</span>(<span class="hljs-params">request</span>)</span>{
+    <span class="hljs-comment">// Check username and password then log the user in</span>
+    <span class="hljs-keyword">this</span>.counterInstance.Increment()
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Logout</span>(<span class="hljs-params">request</span>)</span>{
+    <span class="hljs-comment">// Logout the user</span>
+    <span class="hljs-keyword">this</span>.counterInstance.Decrement()
+  }
+}
+</code></pre>
+<p>With that implementation, we have a class that has one variable that is initialized to be zero. it can then be incremented and decremented.
+Class Auth uses this class and whenever a user logs in, the number is incremented, whenever they logout it&#39;s decremented.</p>
+<p>This works fine for our case since users are counted only when they login and we only have one class that uses the UserCounter class. But now we allow users to add a guest to the chat where guests can chat without being logged in. </p>
+<p>We now have a new class GuestChat that will need to use the UserCounter class. If we use the same implementation of UserCounter each class will have its own independent counter because it will have its own instance of the UserCounter class.</p>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GuestChat</span> </span>{
+  counterInstance UserCount;
+
+  <span class="hljs-keyword">constructor</span> GuestChat() {
+    <span class="hljs-keyword">this</span>.counterInstance = <span class="hljs-keyword">new</span> UserCount();
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AddGuest</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Create a new guest</span>
+    <span class="hljs-keyword">this</span>.counterInstance.Increment();
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RemoveGuest</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Remove a guest</span>
+    <span class="hljs-keyword">this</span>.counterInstance.Decrement();
+  }
+}
+</code></pre>
+<h3 id="solution">Solution</h3>
+<p>Here comes the singleton pattern. Instead of having multiple instance of UserCounter, we can implement the class in a away that creates only one instance and whenever an instance exists, all classes will use it. The implementation would look like this:</p>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserCount</span> </span>{
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> instance UserCount;
+  <span class="hljs-keyword">private</span> counter int;
+
+  <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">GetInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.UserCount == <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">this</span>.instance = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.UserCount();
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.instance;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.instance;
+    }
+  }
+
+  <span class="hljs-keyword">private</span> constructor UserCount(){
+    <span class="hljs-keyword">this</span>.counter = <span class="hljs-number">0</span>;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Increment</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">this</span>.counter++;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Decrement</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">this</span>.counter--;
+  }
+}
+</code></pre>
+<p>Here are the changes that we applied to UserCount class:</p>
+<ol>
+<li>Create a new private variable <code>instance</code> and make it static. static variables and static functions are associated with the class itself and not with the object. So whenever the class is called it will reference the same static variable/function.</li>
+<li>Make the constructor private. This way other classes cannot create new instances of the class and it&#39;s completely up to the class itself to decide when to create a new instance.</li>
+<li>Create a new function <code>GetInstance</code> which returns the instance if it has already been created or create a new instance (using the private constructor) if it does not exist.</li>
+</ol>
+<p>Now classes Auth and GuestChat will be changed to the following:</p>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Auth</span> </span>{
+  counterInstance UserCount;
+
+  <span class="hljs-keyword">constructor</span> Auth() {
+    <span class="hljs-keyword">this</span>.counterInstance = UserCount.GetInstance();
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Login</span>(<span class="hljs-params">request</span>)</span>{
+    <span class="hljs-comment">// Check username and password then log the user in</span>
+    <span class="hljs-keyword">this</span>.counterInstance.Increment()
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Logout</span>(<span class="hljs-params">request</span>)</span>{
+    <span class="hljs-comment">// Logout the user</span>
+    <span class="hljs-keyword">this</span>.counterInstance.Decrement()
+  }
+}
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GuestChat</span> </span>{
+  counterInstance UserCount;
+
+  <span class="hljs-keyword">constructor</span> GuestChat() {
+    <span class="hljs-keyword">this</span>.counterInstance = UserCount.GetInstance();
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AddGuest</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Create a new guest</span>
+    <span class="hljs-keyword">this</span>.counterInstance.Increment();
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RemoveGuest</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Remove a guest</span>
+    <span class="hljs-keyword">this</span>.counterInstance.Decrement();
+  }
+}
+</code></pre>
+<p>In the constructor, instead of creating a new instance of UserCount, both classes call <code>GetInstance()</code> instead. This means that only one class will create a new instance and then that instance will be shared with both classes.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>The singleton design pattern uses access modifiers to limit creation of instances of the class allowing for having a global instance of the class throughout the whole application where other classes can only get the instance but they cannot directly create new instances at will. The example I used is very simple but this is usually used for resources like database connections because you usually need to create the connection once and then use it everywhere instead of creating a new connection each time you want to connect to the database.</p>
+<p>Photo by <a href="https://unsplash.com/@markusspiske?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Markus Spiske</a> on <a href="https://unsplash.com/s/photos/leader?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+
+  
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>software design</a></li>
+                    <li><a>architecture</a></li>
+                    <li><a>OOP</a></li>
+                    <li><a>design patterns</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2021 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
