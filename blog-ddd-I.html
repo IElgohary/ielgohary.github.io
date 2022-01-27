@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Design Patterns: Singleton Pattern" />
+    <meta name="keywords" content="Design Patterns: Singleton Pattern" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="Design Patterns: Singleton Pattern">
+    <meta property="og:description" content="Design Patterns: Singleton Pattern">
+    <meta property="og:image" content="images/blog/blog_post_13.jpeg">
+    <meta property="og:url" content="https://ielgohary.github.io/blog-singleton-pattern.html">
+
+    <meta name="twitter:title" content="Design Patterns: Singleton Pattern">
+    <meta name="twitter:description" content="Design Patterns: Singleton Pattern">
+    <meta name="twitter:image" content="https://ielgohary.github.io/images/blog/blog_post_13.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <!-- <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li> -->
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_14.jpg" alt="blog-post-14" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>Domain-Driven Design by Eric Evans (Part I)</h1>
+                <div class="entry-meta">
+                    <span class="date"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Jan 27, 2022</a></span>
+                  </div>
+                <p>When I first started working as a software engineer I gradually started spending a lot more time designing than actually implementing. More often then not, designing the system to correctly fix the problem of the business is harder than implementation. This is why I started to focus more on design and as I&#39;m currently reading <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">Domain-Driven Design: Tackling Complexity in the Heart of Software</a> I decided to write my notes about it as articles here; to better understand it and maybe help someone get the gist of it without having to read it.</p>
+                <p>In this article I will write my notes on Part I (chapters 1,2 and 3).</p>
+                <h3 id="what-is-domain-driven-design-">What is Domain-Driven Design?</h3>
+                <p>Domain-Driven Design is a software design approach that focuses on modelling the software to match the business domain.</p>
+                <p>The book uses the term &quot;model&quot; to express the <em>organized and selectively abstracted knowledge of the domain experts</em>. Meaning that it&#39;s not about a specific diagram, document or &quot;model&quot; in the context of programming. But basically whatever shows what the system should do and how to do it is referred to as the model.</p>
+                <p>The domain is used in the book to refer to the business domain so if your software is for booking taxis, the domain would be the business of ride hailing.</p>
+                <h4 id="the-utility-of-a-model">The Utility of a Model</h4>
+                <p>In the preface of part I, the factors defining the utility of a model are:</p>
+                <ol>
+                <li>Model and Implementation shape each other</li>
+                <li>Model language is used by all teams (technical and business)</li>
+                <li>The model is the shared understanding of the domain (shared by the developers and the domain experts)</li>
+                </ol>
+                <h3 id="chapter-1-crunching-knowledge">Chapter 1: Crunching Knowledge</h3>
+                <p>The first chapter explains the process of creating a good model. The process should involve meetings between the developers and the domain experts to create the model and refine it to achieve the business goal.</p>
+                <p>The process is iterative, meaning that it&#39;s not a single meeting but multiple meetings that all incrementally create an effective model.</p>
+                <h4 id="effective-modeling">Effective Modeling</h4>
+                <p>These are how modelling should be to produce an effective model</p>
+                <ol>
+                <li>Bind the model to the implementation.</li>
+                <li>Cultivate a common language based on the model.</li>
+                <li>Develop a knowledge-rich model that shows the objects&#39; behavior and how that solves the problem.</li>
+                <li>Distill the model by removing unnecessary details.</li>
+                <li>Brainstorming and experimenting. </li>
+                </ol>
+                <h3 id="chapter-2-communication-and-the-use-of-language">Chapter 2: Communication and the Use of Language</h3>
+                <p>The model&#39;s language is the set of terms and relationships that are used in the model.
+                As explained in chapter 1, the model&#39;s language should be understood by both domain experts and developers. Meaning, it should be tailored to the domain and be precise enough to be used for technical development.</p>
+                <p>As the model keeps changing to better fit its purpose, the language evolves as well by input from both the domain experts and the developers. A good language should be used by all teams and if that&#39;s not the case; then the model should be enriched to provide a good common language.</p>
+                <p>In the meetings, involved parties should play with words and phrases to find the easiest way to express the domain and model it. It&#39;s ok to abstract technical details for the domain experts but the core model should be known to them.</p>
+                <h4 id="diagrams">Diagrams</h4>
+                <p>It&#39;s important to know that diagrams do not need to have the full context of the model. The goal of the diagram is to explain the model and they should be as simple as possible. You should use diagram and documents to explain the model but they don&#39;t have to be a replica of the model. In my opinion, a good model should be simple enough that it&#39;s understood from the code itself.</p>
+                <h3 id="chapter-3-building-model-and-implementation">Chapter 3: Building Model and Implementation</h3>
+                <p>This chapter stresses on the importance of binding the model to the implementation. A model can be very descriptive of the domain while being unrepresentable in code. If the implementation is not considered while building the model:</p>
+                <ul>
+                <li>The model can have objects and relations that cannot be stored in a database.</li>
+                <li>Model will detail irrelevant subjects and ignore important subjects.</li>
+                <li>Some discoveries about the domain might not be apparent without considering the implementation details.</li>
+                </ul>
+                <h4 id="design-model-vs-analysis-model">Design Model vs Analysis Model</h4>
+                <p>There are 2 types of models:</p>
+                <ul>
+                <li>Analysis Model: Captures the fundamentals of the domain concepts in comprehensible, expressive way. (Focuses on the domain)</li>
+                <li>Design Model: Specify a set of components that can be constructed using programming tools and correctly solves the problem. (Focuses on the implementation)</li>
+                </ul>
+                <p>The book introduces another approach <strong>Model-Driven Design</strong>.</p>
+                <h4 id="model-driven-design">Model-Driven Design</h4>
+                <p>Model-Driven Design integrates both Analysis and Design models and it serves both purposes.</p>
+                <p>To build the model:</p>
+                <ol>
+                <li>Design the model to reflect the domain in every literal way.</li>
+                <li>Revisit the Model and modify it with implementation in mind.</li>
+                </ol>
+                <p>If you have multiple systems then they can have different models, however, within a single sub-system you should have only one model. Development of that system then becomes an iterative process of refining the model, the design and the code as a single activity. If the code changes then the model must be changed and vice versa.</p>
+                <h4 id="modeling-paradigms-and-tool-support">Modeling Paradigms and Tool Support</h4>
+                <p>Object-oriented languages (Java) are powerful for implementing the model since they are already based on a modeling paradigm.</p>
+                <p>Logical languages (Prolog) are also a good fit for model-driven design because they declare a set of logical rules for the design to follow.</p>
+                <p>Purely procedural languages (C) are not a good fit because it has no modeling paradigm. Procedural languages rely on telling the computer what to do step by step and that&#39;s it.</p>
+                <h4 id="letting-the-bones-show">Letting the Bones Show</h4>
+                <p>The underlying model of the system should be the same model shown to users. Otherwise, confusion will arise and the language will not be descriptive enough. Having different models can also cause unexpected behaviors to the users. An example to that is how Microsoft Internet Explorer modeled the bookmarks. </p>
+                <p>For the user, &quot;Favorites&quot; was a list of URLs but to the actual implementation a &quot;Favorite&quot; is a file that contains a URL. This meant that URL names had to follow windows file naming restrictions. So if a user saved a URL and named it &quot;AOT: 3&quot; they will get an error stating that file names cannot contain special characters like &quot;:&quot; which is very confusing.</p>
+                <h4 id="hands-on-modelers">Hands-On Modelers</h4>
+                <p>Separating the responsibility of the modeling and coding between different team members violates binding the model to the implementation. It eventually renders the model useless therefore the developers should be able to express the model and contribute to it and anyone who touches the model should participate in the implementation.</p>
+                <h2 id="conclusion">Conclusion</h2>
+                <p>Part I is basically a motivation for why Domain-Driven Design is important. It explains the goals of the approach and shows what it hopes to achieve. </p>
+                <p>My biggest takeaway of Part I is that both domain experts and developers need to be involved in the modeling process and that having a common language that is understood by everyone involved is crucial.</p>
+                <p>I also couldn&#39;t help but notice how well this approach goes with the Lean approach introduced by Eric Ries in his book <a href="https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898">The Lean Startup</a>. Specifically the focus on experimenting and iterations.</p>
+                <p>There are modeling examples in the book that better explain the approach&#39;s goals by showing the do and don&#39;t of modeling so you might want to have a look at that.</p>
+
+  
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>software design</a></li>
+                    <li><a>architecture</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2021 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
