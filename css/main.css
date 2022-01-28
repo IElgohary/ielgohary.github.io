@@ -680,6 +680,15 @@ body > footer .copyrights {
   margin-top: 33px;
 }
 
+.site-main-menu div {
+  display: inline-block;
+  float: right;
+  position: relative;
+  padding: 0;
+  text-align: center;
+  margin-top: 33px;
+}
+
 @media only screen and (min-width: 991px) {
   .header.sticked .site-main-menu li {
     margin-top: 13px;
@@ -911,6 +920,18 @@ body > footer .copyrights {
   -webkit-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
   -moz-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
   box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
+}
+
+.start-page-content .newsletter {
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.start-page-content .newsletter a {
+  display: inline-block;
+  text-align: center;
 }
 
 .start-page-content .social-links a:hover {
