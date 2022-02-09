@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Islam O. Elgohary</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151009602-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-151009602-1');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Domain-Driven Design by Eric Evans (Chapter 5.1): Entities, Value Objects and Services" />
+    <meta name="keywords" content="Domain-Driven Design by Eric Evans (Chapter 5.1): Entities, Value Objects and Services" />
+    <meta name="author" content="Islam Elgohary" />
+
+    <meta property="og:title" content="Domain-Driven Design by Eric Evans (Chapter 5.1): Entities, Value Objects and Services">
+    <meta property="og:description" content="Domain-Driven Design by Eric Evans (Chapter 5.1): Entities, Value Objects and Services>
+    <meta property="og:image" content="images/blog/blog_post_14.jpg">
+    <meta property="og:url" content="https://ielgohary.github.io/blog-ddd-ch5-1-entities-value-objects-and-services.html">
+
+    <meta name="twitter:title" content="Domain-Driven Design by Eric Evans (Chapter 5.1): Entities, Value Objects and Services">
+    <meta name="twitter:description" content="Domain-Driven Design by Eric Evans (Chapter 5.1): Entities, Value Objects and Services">
+    <meta name="twitter:image" content="https://ielgohary.github.io/images/blog/blog_post_14.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/transition-animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+
+  <body class="material-template">
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <div id="page" class="page">
+      <!-- Header -->
+      <header id="site_header" class="header mobile-menu-hide">
+        <div class="header-content">
+          <div class="site-title-block mobile-hidden">
+            <div class="site-title">Islam O. <span>Elgohary</span></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="site-nav">
+            <!-- Main menu -->
+            <ul id="nav" class="site-main-menu">
+              <li>
+                <a class="pt-trigger" href="index.html#home" data-animation="62">Home</a><!-- href value = data-id without # of .pt-page. -->
+              </li>
+              <li>
+                <a class="pt-trigger" href="index.html#resume" data-animation="62">Resume</a>
+              </li>
+              <!-- <li>
+                <a class="pt-trigger" href="index.html#portfolio" data-animation="62">Portfolio</a>
+              </li> -->
+              <li class="active">
+                <a class="pt-trigger" href="index.html#blog" data-animation="62">Blog</a>
+              </li>
+            </ul>
+            <!-- /Main menu -->
+          </div>
+          <!-- Navigation -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header mobile-visible">
+        <div class="mobile-logo-container">
+          <div class="mobile-site-title">Islam O. Elgohary</div>
+        </div>
+
+        <a class="menu-toggle mobile-visible">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-- /Mobile Header -->
+
+      <!-- Main Content -->
+      <div id="main" class="site-main">
+        <!-- Single Page Content -->
+        <div class="single-page-content">
+          <div class="content-area">
+            <div class="page-content">
+              <!-- Blog Entry Content -->
+              <div class="blog-post-main-image">
+                <img class="post-image img-responsive" src="images/blog/blog_post_14.jpg" alt="blog-post-14" />
+              </div>
+
+              <div class="blog-post-content">
+                <h1>Domain-Driven Design by Eric Evans (Chapter 5.1): Entities, Value Objects and Services</h1>
+                <div class="entry-meta">
+                    <span class="date"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Feb 9, 2022</a></span>
+                  </div>
+                
+                  <p>This chapter focuses on connecting model and implementation. The chapter is large and it has a lot of important information that&#39;s why I decided to split it.</p>
+                  <h3 id="patterns-of-model-elements">Patterns of Model Elements</h3>
+                  <ol>
+                  <li>Entities: Something with an identity relevant to the domain. It has a state and is continuous through the system even if the state changes. (example: a transaction in a banking system)</li>
+                  <li>Value Objects: Describes an attribute or a value of something else. It has no identity or state and is often created for an operation then destroyed (example: address of the customer in a banking system)</li>
+                  <li>Services: Actions or operations that are done on client&#39;s requests. They belong to no specific object. ( example: sending an email of a transaction in a banking system)</li>
+                  </ol>
+                  <h3 id="entities">Entities</h3>
+                  <ul>
+                  <li><p>Entities are objects that are in the core of the domain. The system needs to have the state of those objects and they need to be identified. </p>
+                  </li>
+                  <li><p>The implementation of entities should focus on the life cycle of the entity more than the attributes. The entity itself is important regardless of its attributes.</p>
+                  </li>
+                  <li><p>Across a system, entities might have different implementations in the sub-systems. However, In all implementations the objects must refer to the same entity.</p>
+                  </li>
+                  <li><p>Entities have an operation that gives a different value for each instance of the entity. This operation is used for identifying the instance.</p>
+                  </li>
+                  <li><p>The domain model defines what it means for 2 objects to be equal.</p>
+                  </li>
+                  <li><p>A quick way to identify an entity is to answer the question &quot;Does the user need to know if X is the same entity as before?&quot; or in other words &quot;Does the user care about the identity of it?&quot; </p>
+                  </li>
+                  <li><p>An example to that is having a customer object in a banking system. The customer itself is important to the User and the system must allow for the identification of different customers. The  customer might fail to pay a loan or they might own a number of accounts. The identity of the customer is important to know which customer owns which accounts or which customer failed to pay.</p>
+                  </li>
+                  <li><p><strong>Modeling Entities</strong></p>
+                  <ol>
+                  <li><p>Don&#39;t focus on the attributes, strip the object down to the most fundamental characteristics. The attributes that define the object and that are used to match the object with other objects that belong to the entity.</p>
+                  </li>
+                  <li><p>Add behavior that is essential to the identification of the entity and attributes that are used  by that behavior.</p>
+                  </li>
+                  <li><p>Remove other behaviors and attributes to other objects and associate them with the entity.</p>
+                  </li>
+                  <li><p>An example to that is a customer object. a customer would have a unique id, a name and an address. According to the domain of banking, the customer is not identified by the address but it is identified by its id and name. Thus, the address attributes should be moved to another &quot;Address&quot; object.</p>
+                  <p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1644422864110/STcVVhgTJ.png" alt="1.png"></p>
+                  </li>
+                  </ol>
+                  </li>
+                  <li><p><strong>Designing the Identity Operations</strong></p>
+                  <ol>
+                  <li>Defining attributes must be unique. For example, the national ID of a customer.</li>
+                  <li>If there is no unique attributes, then attach a unique ID to the object. Most databases do that automatically.</li>
+                  <li>Identify what makes 2 objects the same entity.</li>
+                  <li>Identity operations can require human input if the ID does not correspond to something in the business domain.</li>
+                  <li>When an entity needs matching on two different systems whose IDs are different, a third system is used for attaching for example the national ID or the Phone number</li>
+                  </ol>
+                  </li>
+                  </ul>
+                  <h3 id="value-objects">Value Objects</h3>
+                  <ul>
+                  <li>Value objects have no identity but their attributes describe something.</li>
+                  <li>If you only care about the attributes of the object but not the identity, then it is a value object</li>
+                  <li>An example to that is a marker pen. If you&#39;re coloring, you don&#39;t care which pen you use but you care about its color. So all instances of the pen that have the same color are the same and it doesn&#39;t matter which pen you&#39;re using. The pen is defined by its attributes but the pen itself has no identity.</li>
+                  <li><p><strong>Is an address a value object or an entity?</strong>
+                  This is an important question. The short answer to that is &quot;It depends&quot;. It depends on the domain.  If you&#39;re running a delivery service, then knowing if 2 people who made an order live in the same address is not important so it is a Value Object. However, if the system plans the delivery route then it is important to know that they have the same address so they are delivered together then it is an Entity.</p>
+                  <p>  The same object can be an Entity or a Value Object depending on the domain.</p>
+                  </li>
+                  <li><p><strong>Designing Value Objects</strong></p>
+                  <ol>
+                  <li>Which instance of the object we have doesn&#39;t matter as long as they have the same attributes.</li>
+                  <li><p>Caring only about the attributes and not the identities allows for more optimization. If the value object is an electrical outlet in a home designing system, then we can either create multiple copy of the outlet or create one and refer to it a hundred times. <strong>When should we copy and when should we share?</strong></p>
+                  <p>Copying will send only a copy of the object but it means that you use more space to store redundant copies. However, sharing sends a reference to the object but it also sends a message for every change to the object so the main object changes. In short, Copying uses more space but less network overhead while sharing uses less space but more network overhead unless the object is immutable.</p>
+                  </li>
+                  <li>Associations should not be bidirectional. If bidirectional associations are needed then consider changing the object to an entity. That&#39;s because Value Objects have no identity so having a bidirectional relationship makes no sense.</li>
+                  </ol>
+                  </li>
+                  </ul>
+                  <h3 id="services">Services</h3>
+                  <ul>
+                  <li><p>Services are operations that belong to no specific object but they are important to the domain.</p>
+                  </li>
+                  <li><p>Not anything that has no home in an Entity or a Value Object is a Service. You must first try to place the operation in an Entity or a Value Object and not give up and make it a Service.</p>
+                  </li>
+                  <li><p>Services have no state and no meaning beyond their operation.</p>
+                  </li>
+                  <li><p>The parameters and results should be domain objects.</p>
+                  </li>
+                  <li><p>To keep the design clear, those operations are declared as services instead of creating an object that represents nothing in the domain.</p>
+                  </li>
+                  <li><p><strong>Good Service Characteristics</strong></p>
+                  <ol>
+                  <li>The operation is part of the domain but it is not a natural part of an Entity or a Value Object.</li>
+                  <li>The interface is defined in terms of other domain elements.</li>
+                  <li>The operation is stateless. A service can use global system info or change them but the service itself should have no state.</li>
+                  </ol>
+                  </li>
+                  <li><p><strong>Service and the Isolated Domain Layer</strong></p>
+                  <p>  This is a pattern focused on distinguishing domain layer services from services in other layers. Usually, a Service is something in the infrastructure layer like a mailing service and they lack any domain meaning. Services that have domain meaning are in the domain layer. But differentiating between services in the application layer and domain layer can be confusing. For example, If we have an operation that exports the transactions as excel then it should be on the application layer because the domain has no concept of file formats. However, an operation that transfers money from one account to the other should be in the domain layer because that&#39;s where the business rules reside and the action is a core part of the domain. Here is a more detailed example from the book (I made some changes to it).</p>
+                  <p>  A request to make a transfer from one account to another might be processed like this:</p>
+                  <ol>
+                  <li><p>Application Layer: </p>
+                  <ul>
+                  <li>Get input request </li>
+                  <li>Ask domain layer service to do the transfer and wait for response </li>
+                  <li>Send notification through mailing service in infrastructure layer</li>
+                  </ul>
+                  </li>
+                  <br/>
+                  <li><p>Domain Layer:</p>
+                  <ul>
+                  <li>Check if transfer is possible according to business rules </li>
+                  <li>Make changes in account balances to transfer fund </li>
+                  <li>Return result to application layer service</li>
+                  </ul>
+                  </li>
+                  <br/>
+                  <li><p>Infrastructure Layer:</p>
+                  <ul>
+                  <li>Send notification email </li>
+                  </ul>
+                  </li>
+                  </ol>
+                  </li>
+                  <li><p><strong>Granularity</strong></p>
+                    <ul>
+                      <li><p>Making services medium-grained allows for more reusability because the service has a lot of functionalities. Having a fine-grained service can cause the application layer to have a lot of domain details so it can coordinate those services which blurs the line between application and domain layers. It is better to have medium-grained services to avoid that.</p></li>
+                    </ul>
+                  </li>
+                  </ul>
+                  <h4 id="conclusion">Conclusion</h4>
+                  <p>This is the first half of the chapter. It introduces Entities, Value Objects and Services as components of the implemented model. It explains how to differentiate between them and how to best use them to reflect the domain while achieving the system&#39;s goals.</p>
+                  
+                <div class="entry-meta entry-tags-share">                 
+                  <!-- /Share Buttons -->
+                  <ul class="tags">
+                    <li><a>software design</a></li>
+                    <li><a>architecture</a></li>
+                    <li><a>domain-driven design</a></li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- End of Blog Entry Content -->
+            </div>
+          </div>
+        </div>
+        <!-- End of Single Page Content -->
+      </div>
+      <!-- /Main Content -->
+    </div>
+    <footer>
+      <div class="copyrights">© 2021 All rights reserved.</div>
+    </footer>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pages-switcher.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/jquery.googlemap.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
